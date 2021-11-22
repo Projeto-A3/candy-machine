@@ -1,0 +1,244 @@
+@import 'colors';
+
+body,
+html,
+button,
+input,
+textarea {
+  font-family: 'Staatliches', cursive;
+}
+
+body {
+  background-color: #f8f8f8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  transition: all 350ms;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem 0;
+
+  .layout {
+    display: grid;
+    grid-template-columns: 10fr 3fr;
+    align-items: center;
+
+    .box-keyboards {
+      padding-right: 1.5rem;
+      display: grid;
+      gap: 10px;
+      align-items: center;
+      justify-items: center;
+    }
+  }
+}
+
+.keyboards {
+  width: 100%;
+  .buttons {
+    button {
+      background-color: transparent;
+      margin: 0;
+      font-size: 1.8rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 1;
+      border: 2px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+.actions-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+
+  button {
+    box-shadow: 0px 0 7px 0px #000;
+    width: 100%;
+    border: 0;
+    padding: 5px;
+    color: #fff;
+    cursor: pointer;
+
+    &.btn-clean {
+      background-color: $danger;
+    }
+
+    &.btn-correct {
+      background-color: $warning;
+    }
+
+    &.btn-confirm {
+      background-color: $success;
+    }
+  }
+}
+
+.container-lcd {
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+
+  .lcd {
+    font-size: 2rem;
+    background-color: $lcdDisplay;
+    padding: 0.5rem;
+    line-height: 1;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+
+    span {
+      font-family: 'Orbitron', sans-serif;
+
+      &:not(.active) {
+        opacity: 0.3;
+      }
+    }
+  }
+}
+
+%bgTexture {
+  background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+  background-color: #131313;
+  background-size: 20px 20px;
+}
+
+.layout {
+  @extend %bgTexture;
+  position: relative;
+  border-radius: 10px;
+  color: #fff;
+
+  &::before {
+    left: 50px;
+  }
+
+  &::after {
+    right: 50px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    height: 50px;
+    width: 20px;
+    @extend %bgTexture;
+  }
+}
+
+.machine {
+  padding: 1.5rem;
+
+  .content {
+    height: 500px;
+    background-color: #f8f8f8;
+    padding: 0.5rem;
+    position: relative;
+
+    &::before {
+      content: "\269EMáquina de doces\269F";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 150px;
+      width: 100%;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @extend %bgTexture;
+    }
+
+    form {
+      display: grid;
+      grid-template-rows: 1fr;
+      row-gap: 10px;
+    }
+  }
+}
+
+.candy {
+  label {
+    padding: 0.5rem;
+    display: flex;
+    width: 100%;
+    border: 1px solid;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    text-shadow: 1px 1px 2px black;
+    gap: 20px;
+    transition: all 0.15s;
+
+    span {
+      font-size: 1.5rem;
+    }
+
+    img {
+      width: 40px;
+    }
+
+    .main {
+      flex: 1;
+
+      span {
+        display: block;
+      }
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked+label {
+      opacity: 0.8;
+      border: 2px solid $success;
+    }
+  }
+}
+
+.image-response {
+  max-width: 75px;
+  width: 100%;
+  margin: 0 auto;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
